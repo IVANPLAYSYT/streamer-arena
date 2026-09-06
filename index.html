@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c1020">
+  <meta name="description" content="Streamer Arena: minijuegos multijugador para streamers y comunidades.">
+  <title>Streamer Arena</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Streamer Arena">
+      <span class="brand-mark">SA</span>
+      <span>
+        <strong>STREAMER ARENA</strong>
+        <small>Play with your community</small>
+      </span>
+    </a>
+
+    <nav class="nav">
+      <button data-view="inicio" class="nav-btn active">Inicio</button>
+      <button data-view="juegos" class="nav-btn">Juegos</button>
+      <button data-view="sala" class="nav-btn">Sala</button>
+      <button data-view="tienda" class="nav-btn">Tienda</button>
+    </nav>
+
+    <div class="wallet">
+      <span title="Moneda virtual">🪙 <b id="coins">0</b></span>
+      <span title="Moneda premium">💎 <b id="gems">0</b></span>
+      <button id="profileBtn" class="avatar">👤</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section id="view-inicio" class="view active">
+      <div class="hero panel">
+        <div class="hero-copy">
+          <span class="eyebrow">PARA STREAMERS · CHAT · SEGUIDORES</span>
+          <h1>Tu stream se convierte<br>en una <span>arena de juegos.</span></h1>
+          <p>Crea una sala, comparte el código con el chat y juega en directo. Cartas españolas, adivina el juego por pistas, trivia y más.</p>
+          <div class="hero-actions">
+            <button class="btn primary" id="heroCreate">Crear sala</button>
+            <button class="btn ghost" data-view-target="juegos">Ver minijuegos</button>
+          </div>
+          <div class="stats">
+            <div><b>40</b><span>cartas españolas</span></div>
+            <div><b>∞</b><span>salas por código</span></div>
+            <div><b>2</b><span>monedas</span></div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="live-head">
+            <span><i></i> EN DIRECTO</span>
+            <b>ROOM <span id="heroRoomCode">— — — —</span></b>
+          </div>
+          <div class="mini-screen">
+            <div class="screen-title">ADIVINA EL JUEGO</div>
+            <div class="clue-card">
+              <small>PISTA 1/4</small>
+              <strong>“El protagonista usa una armadura verde...”</strong>
+            </div>
+            <div class="fake-chat">
+              <span><b>PixelKing:</b> Halo?</span>
+              <span><b>LunaGG:</b> Doom 😅</span>
+              <span><b>RetroFox:</b> Master Chief!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <div><span class="eyebrow">DESTACADOS</span><h2>Juegos para activar el chat</h2></div>
+        <button class="link-btn" data-view-target="juegos">Ver todos →</button>
+      </div>
+
+      <div class="game-grid" id="featuredGames"></div>
+    </section>
+
+    <section id="view-juegos" class="view">
+      <div class="page-head">
+        <div><span class="eyebrow">BIBLIOTECA</span><h1>Minijuegos</h1><p>Elige un juego para tu sala.</p></div>
+        <button class="btn primary" id="gamesCreate">+ Crear sala</button>
+      </div>
+      <div class="filter-row">
+        <button class="chip active" data-filter="all">Todos</button>
+        <button class="chip" data-filter="cartas">Cartas</button>
+        <button class="chip" data-filter="preguntas">Preguntas</button>
+        <button class="chip" data-filter="rapido">Rápidos</button>
+      </div>
+      <div class="game-grid" id="allGames"></div>
+    </section>
+
+    <section id="view-sala" class="view">
+      <div class="room-layout">
+        <div class="panel room-main">
+          <div class="room-toolbar">
+            <div>
+              <span class="eyebrow">SALA MULTIJUGADOR</span>
+              <h2 id="roomTitle">Aún no estás en una sala</h2>
+            </div>
+            <div class="connection" id="connectionBadge">● MODO DEMO</div>
+          </div>
+
+          <div id="roomGate" class="room-gate">
+            <div class="gate-card">
+              <div class="gate-icon">🎮</div>
+              <h3>Crear una sala</h3>
+              <p>Serás el host. Comparte el código con tu comunidad.</p>
+              <input id="hostName" maxlength="18" placeholder="Tu nombre / canal">
+              <button id="createRoomBtn" class="btn primary full">Crear sala</button>
+            </div>
+
+            <div class="or">O</div>
+
+            <div class="gate-card">
+              <div class="gate-icon">🔗</div>
+              <h3>Unirse a una sala</h3>
+              <p>Introduce el código que ves en el stream.</p>
+              <input id="joinName" maxlength="18" placeholder="Tu nickname">
+              <input id="joinCode" maxlength="6" placeholder="Código de sala">
+              <button id="joinRoomBtn" class="btn ghost full">Entrar</button>
+            </div>
+          </div>
+
+          <div id="roomLive" class="room-live hidden">
+            <div class="room-code-box">
+              <div>
+                <small>CÓDIGO DE SALA</small>
+                <strong id="roomCode">------</strong>
+              </div>
+              <button id="copyRoomBtn" class="btn ghost small">Copiar enlace</button>
+            </div>
+
+            <div class="host-controls" id="hostControls">
+              <div class="host-controls-title">
+                <div>
+                  <span class="eyebrow">CONTROLES DEL HOST</span>
+                  <strong>Panel del streamer</strong>
+                </div>
+                <span id="roomStatusText" class="room-status-pill">Sala abierta</span>
+              </div>
+
+              <div class="host-row">
+                <div class="host-field">
+                  <label>Juego activo</label>
+                  <select id="gameSelector">
+                    <option value="guess">Adivina el juego</option>
+                    <option value="forty">Las 40 · baraja española</option>
+                    <option value="trivia">Trivia relámpago</option>
+                  </select>
+                </div>
+
+                <div class="host-field">
+                  <label>Límite de jugadores</label>
+                  <select id="maxPlayersSelect">
+                    <option value="2">2 jugadores</option>
+                    <option value="4">4 jugadores</option>
+                    <option value="8">8 jugadores</option>
+                    <option value="12">12 jugadores</option>
+                    <option value="20" selected>20 jugadores</option>
+                    <option value="50">50 jugadores</option>
+                    <option value="100">100 jugadores</option>
+                  </select>
+                </div>
+
+                <button id="startGameBtn" class="btn primary">▶ Iniciar partida</button>
+                <button id="cancelGameBtn" class="btn ghost">■ Cancelar</button>
+              </div>
+
+              <div class="host-room-actions">
+                <button id="lockRoomBtn" class="btn ghost small">🔓 Bloquear sala</button>
+                <small>Desde la lista de jugadores puedes dar Coins o expulsar seguidores.</small>
+              </div>
+            </div>
+
+            <div id="gameStage" class="game-stage"></div>
+          </div>
+        </div>
+
+        <aside class="panel side-panel">
+          <div class="side-title">
+            <h3>Jugadores <span id="playerCount">0</span></h3>
+          </div>
+          <div id="playersList" class="players-list">
+            <div class="empty">Crea o entra en una sala.</div>
+          </div>
+
+          <div class="chat-box">
+            <div class="side-title"><h3>Chat de sala</h3></div>
+            <div id="chatMessages" class="chat-messages"></div>
+            <form id="chatForm" class="chat-form">
+              <input id="chatInput" maxlength="120" placeholder="Escribe algo..." autocomplete="off">
+              <button>➤</button>
+            </form>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="view-tienda" class="view">
+      <div class="page-head">
+        <div>
+          <span class="eyebrow">TIENDA</span>
+          <h1>Recompensas y monedas</h1>
+          <p>Las monedas virtuales se ganan jugando. Las gemas premium pueden comprarse con dinero real cuando conectes Stripe.</p>
+        </div>
+      </div>
+
+      <div class="currency-info">
+        <div class="panel currency-card">
+          <span class="coin-big">🪙</span>
+          <div><h3>Coins</h3><p>Se consiguen jugando, acertando preguntas y participando en eventos.</p></div>
+        </div>
+        <div class="panel currency-card">
+          <span class="coin-big">💎</span>
+          <div><h3>Gems</h3><p>Moneda premium para cosméticos, tickets de torneo o extras especiales.</p></div>
+        </div>
+      </div>
+
+      <h2 class="store-title">Packs premium</h2>
+      <div class="store-grid">
+        <article class="panel pack">
+          <span>💎</span><h3>100 Gems</h3><p>Pack básico</p><strong>0,99 €</strong>
+          <button class="btn ghost buy-btn" data-pack="100">Comprar</button>
+        </article>
+        <article class="panel pack featured">
+          <em>POPULAR</em><span>💎</span><h3>600 Gems</h3><p>+100 de bonus</p><strong>4,99 €</strong>
+          <button class="btn primary buy-btn" data-pack="600">Comprar</button>
+        </article>
+        <article class="panel pack">
+          <span>💎</span><h3>1.400 Gems</h3><p>+400 de bonus</p><strong>9,99 €</strong>
+          <button class="btn ghost buy-btn" data-pack="1400">Comprar</button>
+        </article>
+      </div>
+
+      <div class="panel warning-box">
+        <b>🔒 Pagos seguros</b>
+        <p>GitHub Pages solo aloja la parte pública. Las claves secretas y la entrega automática de Gems deben ir en un backend seguro mediante Stripe Checkout + webhook. Los botones están preparados como demo y no cobran dinero.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="profileDialog">
+    <form method="dialog" class="modal-card">
+      <div class="modal-head"><h2>Tu perfil</h2><button value="cancel">✕</button></div>
+      <label>Nickname</label>
+      <input id="profileName" maxlength="18" placeholder="Streamer123">
+      <div class="balance-row">
+        <div>🪙 <b id="modalCoins">0</b><small>Coins</small></div>
+        <div>💎 <b id="modalGems">0</b><small>Gems</small></div>
+      </div>
+      <button id="saveProfileBtn" value="default" class="btn primary full">Guardar</button>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="./firebase-config.js" onerror="console.info('Firebase no configurado: usando modo demo')"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
