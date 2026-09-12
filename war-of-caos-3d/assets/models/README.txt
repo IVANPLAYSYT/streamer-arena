@@ -1,1 +1,0 @@
-GLB con materiales y texturas embebidos: Ayuntamiento, Mina, Cañón, Torre Arquera, Cuartel, Laboratorio, Recolector, Muro, Bárbaro, Arquera, Gigante, Mago, Rey y Dragón.
