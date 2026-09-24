@@ -1,0 +1,107 @@
+{
+  "desert_run": {
+    "file": "desert_run_final.glb",
+    "start": [
+      -0.070556640625,
+      0.05538155808726946,
+      0.3382827758789062
+    ],
+    "finish": [
+      -0.01763916015625,
+      0.05574777275005976,
+      0.3382827758789062
+    ],
+    "gantry": [
+      -0.097015380859375,
+      0.055429876344203946,
+      0.3382827758789062
+    ],
+    "cross_width": 0.0661468505859375,
+    "tangent": "x",
+    "note": "Los nodos *_VISUAL_ONLY deben excluirse de las colisiones del circuito."
+  },
+  "harbor_night": {
+    "file": "harbor_night_final.glb",
+    "start": [
+      -0.09820861816406246,
+      0.09670583704789479,
+      0.26402618408203127
+    ],
+    "finish": [
+      -0.03928344726562499,
+      0.09735250770727794,
+      0.26402618408203127
+    ],
+    "gantry": [
+      -0.12767120361328127,
+      0.09673041402975718,
+      0.26402618408203127
+    ],
+    "cross_width": 0.07334060668945312,
+    "tangent": "x",
+    "note": "Los nodos *_VISUAL_ONLY deben excluirse de las colisiones del circuito."
+  },
+  "alpine_pass": {
+    "file": "alpine_pass_final.glb",
+    "start": [
+      -0.14712066650390626,
+      0.11253039933840434,
+      0.32441528320312496
+    ],
+    "finish": [
+      -0.08827239990234376,
+      0.10864449935754139,
+      0.32441528320312496
+    ],
+    "gantry": [
+      -0.1765447998046875,
+      0.10692024625937144,
+      0.32441528320312496
+    ],
+    "cross_width": 0.06758651733398437,
+    "tangent": "x",
+    "note": "Los nodos *_VISUAL_ONLY deben excluirse de las colisiones del circuito."
+  },
+  "neon_city": {
+    "file": "neon_city_final.glb",
+    "start": [
+      0.34351656138896935,
+      0.10152573684533436,
+      -0.068026123046875
+    ],
+    "finish": [
+      0.34351656138896935,
+      0.14340125818729402,
+      -0.009718017578125016
+    ],
+    "gantry": [
+      0.34351656138896935,
+      0.10185284465233485,
+      -0.09718017578124999
+    ],
+    "cross_width": 0.07288513183593749,
+    "tangent": "z",
+    "note": "Los nodos *_VISUAL_ONLY deben excluirse de las colisiones del circuito."
+  },
+  "forest_ring": {
+    "file": "forest_ring_final.glb",
+    "start": [
+      -0.0684918212890625,
+      0.0096217411228021,
+      0.32317777097225187
+    ],
+    "finish": [
+      -0.009784545898437524,
+      0.009362344192266465,
+      0.32317777097225187
+    ],
+    "gantry": [
+      -0.09784545898437497,
+      0.010312200086116791,
+      0.32317777097225187
+    ],
+    "cross_width": 0.05911788493394851,
+    "tangent": "x",
+    "note": "Los nodos *_VISUAL_ONLY deben excluirse de las colisiones del circuito."
+  }
+}
